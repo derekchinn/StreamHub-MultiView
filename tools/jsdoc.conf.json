@@ -1,0 +1,13 @@
+{
+    "plugins": [ "plugins/markdown" ],
+    "opts": {
+        "recurse": "true",
+        "destination": "docs"
+    },
+    "markdown": {
+        "parser": "gfm"
+    },
+    "source": {
+        "include": ["src/main.js", "README.md"]
+    }
+}

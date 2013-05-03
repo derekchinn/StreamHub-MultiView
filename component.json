@@ -1,0 +1,13 @@
+{
+  "name": "StreamHub-MultiView",
+  "version": "0.1.0",
+  "main": [
+    "src/main.js"
+  ],
+  "dependencies": {
+    "streamhub-backbone": "git://github.com/gobengo/streamhub-backbone.git",
+    "underscore": "*",
+    "jquery": "*",
+    "requirejs": "*"
+  }
+}
