@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Index</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Index</h1>
+    
+    
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>StreamHub-Multiview</h1>
+<p>StreamHub-MultiView is a view that allows you to display multiple StreamHub Views in one element and control which view is displayed by a user defined control group (i.e. navigation tabs, buttons, etc.). In addition to allowing for easy view switching, MultiView also contains some performance optimizations that'll help keep the page running fast with multiple views. </p>
+<h2>Usage</h2>
+<h4>HTML Control Elements</h4>
+<p>To control the switching of views, you'll need to define a number of HTML elements that you can reference back to later (either by id, class, or tags). For each item that will be &quot;click-able&quot;, you'll have to add an attribute of 'data-articleId' that will contain the article's unique ID.</p>
+<p>Example:</p>
+<pre><code>&lt;nav&gt;
+    &lt;a data-articleId=&quot;article_id_1&quot; class=&quot;tab1 navigation-tab&quot;&gt;article_id_1&lt;/a&gt;
+    &lt;a data-articleId=&quot;article_id_2&quot; class=&quot;tab2 navigation-tab&quot;&gt;article_id_2&lt;/a&gt;
+    &lt;a data-articleId=&quot;article_id_3&quot; class=&quot;tab3 navigation-tab&quot;&gt;article_id_3&lt;/a&gt;
+    &lt;a data-articleId=&quot;article_id_4&quot; class=&quot;tab4 navigation-tab&quot;&gt;article_id_4&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+<p>With the above example, I could later access the control elements by doing either <code>document.getElementsByTagName(&quot;nav&quot;)[0].children()</code> or <code>document.getElementsByClassName(&quot;navigation-tab&quot;)</code>.</p>
+<h4>Javascript</h4>
+<p>Once we get the control elements in place, we need to actually generate the views for the MultiView to display. The Example below is done in pseudo code, but hopes to illustrate the following:  </p>
+<ol>
+<li>Setting up View objects</li>
+<li>Setting up the binding options for the associated views</li>
+<li>Building a pairing of the views and binding options</li>
+<li>Instantiating the MultiView object with the desired configs.</li>
+</ol>
+<p>Example:</p>
+<pre><code>&lt;!--View and Binding Options setup--&gt;
+
+var view1 = new IsotopView({view settings1});
+var view2 = new IsotopView({view settings2});
+var bindOpts1 = {binding settings1}
+var bindOpts2 = {binding settings2}
+
+&lt;!-- 
+Setting up the configs
+- &quot;load&quot;: boolean that tells the MultiView which view to load on init
+--&gt;
+
+var config1 = {
+  bindOpts: bindOpts1,
+  view: view1,
+  load: true
+}
+var config2 = {
+  bindOpts: bindOpts2,
+  view: view2,
+  load: false
+};
+
+&lt;!-- Final configs to be passed --&gt;
+
+var viewConfigs = [
+  config1,
+  config2
+];
+
+&lt;!--
+Final invocation
+- el: is the object that the view will populate
+- loggingOn: turns console logging on (boolean, default is false)
+- nav: an array of DOM elements that control which view is displayed
+--&gt;
+new MultiView({
+  el: document.getElementById(&quot;target-element&quot;),
+  loggingOn: true,
+  nav: document.getElementsByClassName(&quot;navigation-tabs&quot;),
+  viewConfigs: viewConfigs
+});</code></pre>
+<h1>Getting Started</h1>
+<p>Install npm</p>
+<p>Use npm to install this package</p>
+<pre><code>npm install</code></pre>
+<p><a href="http://twitter.github.com/bower/">Bower</a> is used for dependency management. The npm postinstall script will run <code>bower install</code> and put dependencies in <code>lib/</code>.</p>
+<p>StreamHub-MultiView is written as an <a href="http://requirejs.org/docs/whyamd.html">AMD</a> module. You will need to use an AMD loader like <a href="http://requirejs.org/">RequireJS</a> to use it. Add it as a package in your RequireJS config:</p>
+<pre><code>packages: [{
+    name: 'streamhub-multiview',
+    location: './path/to/StreamHub-MultiView'
+}]</code></pre>
+<p>Then you can use it like:</p>
+<pre><code>require(['streamhub-multiview'], function (MultiView) {
+    // Your code here
+})</code></pre>
+<h1>Documentation</h1>
+<p>You can access the API Reference <a href="http://derekchinn.github.com/StreamHub-MultiView/docs">on GitHub</a></p>
+<p>The API reference also lives in the <code>docs/</code> directory. You can view them in your browser with:</p>
+<pre><code>open docs/index.html</code></pre>
+<p>You can re-build the documentation using:</p>
+<pre><code>npm run-script doc</code></pre></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="MultiView.html">MultiView</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Fri May 03 2013 14:45:58 GMT-0700 (PDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
