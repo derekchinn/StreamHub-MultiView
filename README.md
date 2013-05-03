@@ -94,8 +94,6 @@ Then you can use it like:
     })
 
 # Documentation
-You can access the API Reference [on GitHub](http://derekchinn.github.com/StreamHub-MultiView/docs)
-
 The API reference also lives in the `docs/` directory. You can view them in your browser with:
 
     open docs/index.html
