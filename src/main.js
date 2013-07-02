@@ -49,7 +49,8 @@ define(function(require){
 			// reference to the active view
 			this._activeView = null;
 			// the CSS class to apply for hiding/showing targeting purposes
-			this._cssClasses = opts.cssClasses || {"hide": "fyre-media-wall-hide"};
+			this._cssClasses = opts.cssClasses || {"activeTab": "fyre-media-wall-active",
+												   "hide": "fyre-media-wall-hide"};
 			// array of DOM elements that we can add event listeners to
 			this._nav = opts.nav || [];
 			// bool that allows you to turn on/off logging
@@ -83,6 +84,7 @@ define(function(require){
 					haveAlreadyLoaded = true;
 					this.viewConfigs[i].view.el.removeAttribute("class");
 					this._bindCollectionToView(this.viewConfigs[i]);
+					this._toggleActiveTab(this.viewConfigs[i].bindOpts.articleId, true);
 				}
 			}
 			return this;
@@ -177,6 +179,7 @@ define(function(require){
 			self._bindCollectionToView(viewToSwap);
 		}
 		$(self._activeView.view.el).toggleClass(self._cssClasses.hide);
+		self._toggleActiveTab.call(self, articleId);
 		
 		return self;
 	};
@@ -232,6 +235,39 @@ define(function(require){
 		}
 		else {
 			console.debug(msg);
+		}
+	};
+	
+	/**
+	 * Toggles the "active" CSS class on the navigational
+	 * elements so that they can be targeted come time to
+	 * style.
+	 * 
+	 * If you pass true as activateOnly, this function will
+	 * loop through all the navigation elements looking to only
+	 * mark an the nav element as "active" and then return once it's
+	 * done. Otherwise, it'll continue to loop through all elements,
+	 * looking to remove the previously "active" nav element.
+	 * 
+	 * If you don't like the CSS class applied, you can pass in the
+	 * prefered class name in the opts.cssClass option.
+	 * 
+	 * @param {String} activeTab This is the article id for the tab that will
+	 * be activated.
+	 * @param {Boolean} activateOnly A boolean flag to trigger activation only
+	 */
+	MultiView.prototype._toggleActiveTab = function (activeTab, activateOnly) {
+		var len = this._nav.length;
+		for (var i = 0; i < len;  i++) {
+			if (activeTab == this._nav[i].getAttribute("data-articleId")) {
+				$(this._nav[i]).toggleClass(this._cssClasses.activeTab);
+				if (activateOnly) {
+					return;
+				}
+			}
+			else if (!activateOnly && activeTab == this._activeView.bindOpts.articleId) {
+				$(this._nav[i]).toggleClass(this._cssClasses.activeTab);
+			}
 		}
 	};
 	
