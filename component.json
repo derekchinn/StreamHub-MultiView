@@ -7,7 +7,7 @@
   "dependencies": {
     "streamhub-backbone": "git://github.com/gobengo/streamhub-backbone.git",
     "underscore": "*",
-    "jquery": "*",
+    "jquery": ">2.0.0",
     "requirejs": "*"
   }
 }
